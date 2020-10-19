@@ -2,22 +2,20 @@ import { platforms } from './platforms';
 import { ContentType, PlatformObject } from './interfaces';
 
 export function analyse(link: string): PlatformObject | undefined {
-  for (let platformName in platforms) {
-    const platformObj = platforms[platformName];
-
-    if (!link.match(platformObj.baseURLMatch)) continue;
+  for (const platform of Object.values(platforms)) {
+    if (!link.match(platform.baseURLMatch)) continue;
 
     // loop over the keys in the platform's "contentTypeMatches" property
-    for (const contentTypeMatch in platformObj.contentTypeMatches) {
+    for (const contentTypeMatch in platform.contentTypeMatches) {
       // each regex entry should be ordered so the most simple is LAST in the object
       // the key of the entry into this object should be the ContentType ("clip" | "stream" | "video" etc)
-      const matched = link.match(platformObj.contentTypeMatches[contentTypeMatch as ContentType] || '');
+      const matched = link.match(platform.contentTypeMatches[contentTypeMatch as ContentType] || '');
 
       if (!matched) continue;
 
       // Return the full platform and the new data in a new object. Let's not write to the global spec, hey? ;)
       return {
-        ...platformObj,
+        ...platform,
         extractedId: extract(matched),
         contentType: contentTypeMatch,
       };

@@ -20,7 +20,8 @@ export type ContentType =
   | 'image'
   | 'story'
   | 'repo'
-  | 'invite';
+  | 'invite'
+  | 'shortlink';
 
 export interface PlatformObject {
   key: string;

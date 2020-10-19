@@ -1,6 +1,6 @@
 import { PlatformObject } from './interfaces';
 
-export const platforms: { [key: string]: PlatformObject } = {
+export const platforms: Record<string, PlatformObject> = {
   twitch: {
     key: 'twitch',
     name: 'Twitch',
@@ -23,7 +23,7 @@ export const platforms: { [key: string]: PlatformObject } = {
     wideThumb: true,
     baseURLMatch: /http(?:s)?:\/\/(?:www\.)?youtube\.com\//,
     contentTypeMatches: {
-      channel: /(?:https|http)\:\/\/(?:[\w]+\.)?youtube\.com\/(?:c\/|channel\/|user\/)([a-zA-Z0-9\-_]{1,})/,
+      channel: /(?:https|http)\:\/\/(?:[\w]+\.)?youtube\.com\/(?:c\/|channel\/|user\/)([a-zA-Z0-9\-_]+)/,
       video: /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)[\w\=]*)?/,
     },
   },
@@ -36,13 +36,13 @@ export const platforms: { [key: string]: PlatformObject } = {
     wideThumb: false,
     baseURLMatch: /http(?:s)?:\/\/(?:open\.)?spotify\.com\//,
     contentTypeMatches: {
-      artist: /http(?:s)?:\/\/(?:open\.)?spotify\.com\/artist\/([a-zA-Z0-9]{1,})/,
-      song: /http(?:s)?:\/\/(?:open\.)?spotify\.com\/track\/([a-zA-Z0-9]{1,})/,
-      album: /http(?:s)?:\/\/(?:open\.)?spotify\.com\/album\/([a-zA-Z0-9]{1,})/,
-      playlist: /http(?:s)?:\/\/(?:open\.)?spotify\.com\/playlist\/([a-zA-Z0-9]{1,})/,
-      podcast: /http(?:s)?:\/\/(?:open\.)?spotify\.com\/show\/([a-zA-Z0-9]{1,})/,
-      podcastEpisode: /http(?:s)?:\/\/(?:open\.)?spotify\.com\/episode\/([a-zA-Z0-9]{1,})/,
-      profile: /http(?:s)?:\/\/(?:open\.)?spotify\.com\/user\/([a-zA-Z0-9]{1,})/,
+      artist: /http(?:s)?:\/\/(?:open\.)?spotify\.com\/artist\/([a-zA-Z0-9]+)/,
+      song: /http(?:s)?:\/\/(?:open\.)?spotify\.com\/track\/([a-zA-Z0-9]+)/,
+      album: /http(?:s)?:\/\/(?:open\.)?spotify\.com\/album\/([a-zA-Z0-9]+)/,
+      playlist: /http(?:s)?:\/\/(?:open\.)?spotify\.com\/playlist\/([a-zA-Z0-9]+)/,
+      podcast: /http(?:s)?:\/\/(?:open\.)?spotify\.com\/show\/([a-zA-Z0-9]+)/,
+      podcastEpisode: /http(?:s)?:\/\/(?:open\.)?spotify\.com\/episode\/([a-zA-Z0-9]+)/,
+      profile: /http(?:s)?:\/\/(?:open\.)?spotify\.com\/user\/([a-zA-Z0-9]+)/,
     },
   },
 
@@ -54,9 +54,9 @@ export const platforms: { [key: string]: PlatformObject } = {
     wideThumb: true,
     baseURLMatch: /http(?:s)?:\/\/(?:www\.)?instagram\.com\//,
     contentTypeMatches: {
-      image: /http(?:s)?:\/\/(?:www\.)?instagram\.com\/p\/([a-zA-Z0-9]{1,})/,
-      profile: /http(?:s)?:\/\/(?:www\.)?instagram\.com\/(?!p\/)(?!stories\/)([a-zA-Z0-9]{1,})/,
-      story: /http(?:s)?:\/\/(?:www\.)?instagram\.com\/stories\/([a-zA-Z0-9]{1,})/,
+      image: /http(?:s)?:\/\/(?:www\.)?instagram\.com\/p\/([a-zA-Z0-9]+)/,
+      profile: /http(?:s)?:\/\/(?:www\.)?instagram\.com\/(?!p\/)(?!stories\/)([a-zA-Z0-9]+)/,
+      story: /http(?:s)?:\/\/(?:www\.)?instagram\.com\/stories\/([a-zA-Z0-9]+)/,
     },
   },
 
@@ -69,7 +69,7 @@ export const platforms: { [key: string]: PlatformObject } = {
     baseURLMatch: /http(?:s)?:\/\/(?:www\.)?github\.com\//,
     contentTypeMatches: {
       repo: /http(?:s)?:\/\/(?:www\.)?github\.com\/[A-z0-9_-]+\/([A-z0-9_-]+)\/?/,
-      profile: /http(?:s)?:\/\/(?:www\.)?github\.com\/([A-z0-9_-]{1,})/,
+      profile: /http(?:s)?:\/\/(?:www\.)?github\.com\/([A-z0-9_-]+)/,
     },
   },
 
@@ -93,7 +93,7 @@ export const platforms: { [key: string]: PlatformObject } = {
     wideThumb: false,
     baseURLMatch: /http(?:s)?:\/\/(?:www\.)?(discordapp\.com|discord\.com|discord\.gg)\//,
     contentTypeMatches: {
-      invite: /http(?:s)?:\/\/(?:www\.)?(?:discord\.gg|discordapp\.com\/invite|discord\.com\/invite)\/([a-zA-Z0-9_-]{1,})/,
+      invite: /http(?:s)?:\/\/(?:www\.)?(?:discord\.gg|discordapp\.com\/invite|discord\.com\/invite)\/([a-zA-Z0-9_-]+)/,
     },
   },
 
@@ -105,7 +105,7 @@ export const platforms: { [key: string]: PlatformObject } = {
     wideThumb: false,
     baseURLMatch: /http(?:s)?:\/\/(?:www\.)?dlive\.tv\//,
     contentTypeMatches: {
-      channel: /http(?:s)?:\/\/dlive\.tv\/([a-zA-Z0-9_-]{1,})/,
+      channel: /http(?:s)?:\/\/dlive\.tv\/([a-zA-Z0-9_-]+)/,
     },
   },
 
@@ -117,8 +117,8 @@ export const platforms: { [key: string]: PlatformObject } = {
     wideThumb: false,
     baseURLMatch: /http(?:s)?:\/\/(?:www\.)?patreon\.com\//,
     contentTypeMatches: {
-      channel: /http(?:s)?:\/\/(?:www\.)?patreon\.com\/([^posts\/][a-zA-Z0-9-_]{1,})/,
-      post: /http(?:s)?:\/\/(?:www\.)?patreon\.com\/posts\/([0-9]{1,})/,
+      channel: /http(?:s)?:\/\/(?:www\.)?patreon\.com\/([^posts\/][a-zA-Z0-9-_]+)/,
+      post: /http(?:s)?:\/\/(?:www\.)?patreon\.com\/posts\/([0-9]+)/,
     },
   },
 
@@ -130,9 +130,9 @@ export const platforms: { [key: string]: PlatformObject } = {
     wideThumb: false,
     baseURLMatch: /http(?:s)?:\/\/(?:www\.)?soundcloud\.com\//,
     contentTypeMatches: {
-      song: /http(?:s)?:\/\/(?:www\.)?soundcloud\.com\/[a-zA-Z0-9-_]{1,}\/([^sets][a-zA-Z0-9-_]{1,})/,
-      album: /http(?:s)?:\/\/(?:www\.)?soundcloud\.com\/[a-zA-Z0-9-_]{1,}\/sets\/([a-zA-Z0-9-_]{1,})/,
-      artist: /http(?:s)?:\/\/(?:www\.)?soundcloud\.com\/([a-zA-Z0-9-_]{1,})/,
+      song: /http(?:s)?:\/\/(?:www\.)?soundcloud\.com\/[a-zA-Z0-9-_]+\/([^sets][a-zA-Z0-9-_]+)/,
+      album: /http(?:s)?:\/\/(?:www\.)?soundcloud\.com\/[a-zA-Z0-9-_]+\/sets\/([a-zA-Z0-9-_]+)/,
+      artist: /http(?:s)?:\/\/(?:www\.)?soundcloud\.com\/([a-zA-Z0-9-_]+)/,
     },
   },
 
@@ -144,8 +144,8 @@ export const platforms: { [key: string]: PlatformObject } = {
     wideThumb: true,
     baseURLMatch: /http(?:s)?:\/\/(?:www\.)?tiktok\.com\//,
     contentTypeMatches: {
-      post: /http(?:s)?:\/\/(?:www\.)?tiktok\.com\/@[a-zA-Z0-9-_]{1,}\/video\/([0-9]+)/,
-      channel: /http(?:s)?:\/\/(?:www\.)?tiktok\.com\/(@[a-zA-Z0-9_-]{1,})/,
+      post: /http(?:s)?:\/\/(?:www\.)?tiktok\.com\/@[a-zA-Z0-9-_]+\/video\/([0-9]+)/,
+      channel: /http(?:s)?:\/\/(?:www\.)?tiktok\.com\/(@[a-zA-Z0-9_-]+)/,
     },
   },
 
@@ -157,8 +157,21 @@ export const platforms: { [key: string]: PlatformObject } = {
     wideThumb: false,
     baseURLMatch: /http(?:s)?:\/\/(?:www\.)?twitter\.com\//,
     contentTypeMatches: {
-      post: /http(?:s)?:\/\/(?:www\.)?twitter\.com\/[a-zA-Z0-9-_]{1,}\/status\/([0-9]+)/,
-      profile: /http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9-_]{1,})/,
+      post: /http(?:s)?:\/\/(?:www\.)?twitter\.com\/[a-zA-Z0-9-_]+\/status\/([0-9]+)/,
+      profile: /http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9-_]+)/,
     },
   },
-};
+
+  'discord-bio': {
+    key: 'discord.bio',
+    name: 'discord.bio',
+    url: 'discord.bio',
+    wideThumb: true,
+    hex: '#16151D',
+    baseURLMatch: /http(?:s)?:\/\/(?:www\.)?discord\.bio\//,
+    contentTypeMatches: {
+      profile: /http(?:s)?:\/\/(?:www\.)?discord\.bio\/p\/([a-zA-Z0-9-_]+)/g,
+      shortlink: /http(?:s)?:\/\/(?:www\.)?dsc\.bio\/([a-zA-Z0-9-_]+)/g,
+    },
+  },
+} as const;
