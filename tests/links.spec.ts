@@ -201,6 +201,17 @@ describe('Twitter link test', () => {
   });
 });
 
+describe('Discord.bio link test', () => {
+  it('should parse discord.bio links', () => {
+    const profile = 'https://discord.bio/p/v';
+    testResult(profile, 'v', 'profile');
+  });
+  it('should parse discord.bio shortlinks', () => {
+    const profile = 'https://dsc.bio/v';
+    testResult(profile, 'v', 'profile');
+  });
+});
+
 describe('Unfound/Invalid link test', () => {
   it('should return undefined to a valid url but not registered', () => {
     const unfoundLink = analyse('https://test.test/test');
